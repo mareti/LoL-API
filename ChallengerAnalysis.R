@@ -14,7 +14,7 @@ getChallengerList <- function() {
     requestURL <- paste(BASE, call, type, "&", API_KEY, sep="")
     responseBody <- fromJSON(requestURL)
     
-    desiredFileName <- paste("challenger snapshots/" 
+    desiredFileName <- paste("../LoL Data/challenger snapshots/" 
                              , toString(today())
                              , " NA.json"
                              , sep=""
@@ -38,7 +38,7 @@ getChallengerMatchFile <- function(match) {
     callType <- "/v2.2/match"
     matchId <- paste("/", match, sep="")
     optionalParams <- "&includeTimeline=TRUE"
-    desiredFileName <- paste("challenger matches/"
+    desiredFileName <- paste("../LoL Data/challenger matches/"
                              , toString(match)
                              , ".json"
                              , sep=""
