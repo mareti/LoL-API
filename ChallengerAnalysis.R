@@ -42,7 +42,7 @@ getChallengerMatchFile <- function(match) {
                              , toString(match)
                              , ".json"
                              , sep=""
-    )
+                            )
     
     requestURL <- paste(BASE, callType, matchId, "?", API_KEY, optionalParams
                         , sep="")
@@ -80,8 +80,20 @@ getChallengerMatches <- function() {
         for (j in 1:nrow(recentChallengerMatches)) {
             y <- slice(recentChallengerMatches, j)
             matchId <- toString(y$gameId)
-            getChallengerMatchFile(matchId)
-            Sys.sleep(1) #sleep for one second
+            
+            desiredFileName <- paste("../LoL Data/challenger matches/"
+                                     , toString(matchId)
+                                     , ".json"
+                                     , sep=""
+                                    )
+            
+            if (!file.exists(desiredFileName)) {
+                getChallengerMatchFile(matchId)
+                Sys.sleep(1) #sleep for one second
+            }
+            else {
+                print(paste("File", desiredFileName, "already exists"))
+            }
         }
     }
 }
